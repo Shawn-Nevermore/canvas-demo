@@ -1,0 +1,15 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+canvas{
+    background: #e4e4e4;
+}
+
+button {
+    position: fixed;
+    left: 50%;
+    bottom: 4px;
+    padding: 2px;
+}
