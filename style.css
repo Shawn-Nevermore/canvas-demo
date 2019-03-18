@@ -2,6 +2,9 @@
     margin:0;
     padding:0;
 }
+body{
+    overscroll-behavior-y: contain;
+}
 
 canvas{
     background: #c8c8c8;
