@@ -4,12 +4,20 @@
 }
 
 canvas{
-    background: #e4e4e4;
+    background: #c8c8c8;
+    display: block;
 }
 
-button {
+#eraser {
     position: fixed;
-    left: 50%;
+    left: 60px;
     bottom: 4px;
-    padding: 2px;
+    padding: 10px;
+}
+
+#brush {
+    position: fixed;
+    left: 4px;
+    bottom: 4px;
+    padding: 10px;
 }
