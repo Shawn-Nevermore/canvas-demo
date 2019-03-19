@@ -2,6 +2,7 @@
 var context = canvas.getContext('2d')
 // var eraser = document.getElementById('eraser')
 // var brush = document.getElementById('brush')
+var wipe = document.getElementById('wipe')
 
 var isTouchDevice = 'ontouchstart' in document.documentElement
 
@@ -14,6 +15,7 @@ listenToUser(canvas)
 // 3.设置功能按钮
 var brushEnabled = true
 var eraserEnabled = false
+
 eraser.onclick = function () {
     eraserEnabled = true
     brushEnabled = false
@@ -22,6 +24,10 @@ eraser.onclick = function () {
 brush.onclick = function () {
     brushEnabled = true
     eraserEnabled = false
+}
+
+wipe.onclick=function(){
+    context.clearRect(0, 0, canvas.width, canvas.height)
 }
 
 /*****************工具函数*****************************************/

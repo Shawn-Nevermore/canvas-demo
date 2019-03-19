@@ -25,3 +25,10 @@ canvas{
     bottom: 4px;
     padding: 10px;
 }
+#wipe {
+    position: fixed;
+    left: 130px;
+    bottom: 4px;
+    padding: 10px;
+}
+
