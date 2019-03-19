@@ -2,10 +2,9 @@
 var context = canvas.getContext('2d')
 // var eraser = document.getElementById('eraser')
 // var brush = document.getElementById('brush')
-var wipe = document.getElementById('wipe')
+// var wipe = document.getElementById('wipe')
 
 var isTouchDevice = 'ontouchstart' in document.documentElement
-
 // 1.自动初始化画布
 autoSetCanvasSize(canvas)
 
@@ -13,35 +12,67 @@ autoSetCanvasSize(canvas)
 listenToUser(canvas)
 
 // 3.设置功能按钮
-var brushEnabled = true
+// var brushEnabled = true
 var eraserEnabled = false
+
+brush.onclick = function () {
+    eraserEnabled = false
+    brush.classList.add('active')
+    eraser.classList.remove('active')
+}
 
 eraser.onclick = function () {
     eraserEnabled = true
-    brushEnabled = false
-    // console.log("hei")
-}
-brush.onclick = function () {
-    brushEnabled = true
-    eraserEnabled = false
+    eraser.classList.add('active')
+    brush.classList.remove('active')
 }
 
-wipe.onclick=function(){
+wipe.onclick = function () {
     context.clearRect(0, 0, canvas.width, canvas.height)
 }
+
+red.onclick = function () {
+    red.classList.add('active')
+    green.classList.remove('active')
+    blue.classList.remove('active')
+    context.strokeStyle = 'red'
+}
+green.onclick = function () {
+    red.classList.remove('active')
+    green.classList.add('active')
+    blue.classList.remove('active')
+    context.strokeStyle = 'green'
+}
+blue.onclick = function () {
+    red.classList.remove('active')
+    green.classList.remove('active')
+    blue.classList.add('active')
+    context.strokeStyle = 'blue'
+}
+
+// function pickColor(colorId) {
+//     colorId.onclick = function () {
+//         console.log(colorId)
+//         colorId.classList.add('active')
+//         var parent = document.getElementsByClassName('colorPicker')
+//         parent.children.forEach(element => {
+//             element.classList.remove('active')
+//         });
+//     }
+// }
+
 
 /*****************工具函数*****************************************/
 
 function drawCircle(x, y, radius) {
     context.beginPath()
-    context.fillStyle = 'black'
+
     context.arc(x, y, radius, 0, Math.PI * 2)
     context.fill()
 }
 
 function drawLine(x1, y1, x2, y2) {
     context.beginPath()
-    context.strokeStyle = 'black'
     context.moveTo(x1, y1)
     context.lineTo(x2, y2)
     context.lineWidth = 2
@@ -95,7 +126,7 @@ function listenToUser(canvas) {
                 drawCircle(x, y, 1)
             }
         }
-        canvas.ontouchmove = function(aaa){
+        canvas.ontouchmove = function (aaa) {
             var x = aaa.touches[0].clientX
             var y = aaa.touches[0].clientY
             if (!using) { return }
@@ -112,8 +143,8 @@ function listenToUser(canvas) {
                 lastPoint = newPoint
             }
         }
-        canvas.ontouchend=function(aaa){
-            using= false
+        canvas.ontouchend = function (aaa) {
+            using = false
         }
     } else {
         // 1.监听鼠标按下

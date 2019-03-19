@@ -9,14 +9,29 @@
     <title>画板</title>
 
     <link rel="stylesheet" href="./style.css">
+    <script src="//at.alicdn.com/t/font_1096518_222tcuz3uz.js"></script>
 </head>
 
 <body>
     <canvas id="canvas">
     </canvas>
-    <button id="eraser">橡皮擦</button>
-    <button id="brush">画笔</button>
-    <button id="wipe">清空</button>
+    <svg class="icon active" id="brush" aria-hidden="true">
+        <use xlink:href="#icon-pen"></use>
+    </svg>
+
+    <svg class="icon" id="eraser" aria-hidden="true">
+        <use xlink:href="#icon-ERASER"></use>
+    </svg>
+
+    <svg class="icon" id="wipe" aria-hidden="true">
+        <use xlink:href="#icon-lajixiang"></use>
+    </svg>
+
+    <ul class="colorPicker">
+        <li id="red" class="active"></li>
+        <li id="green"></li>
+        <li id="blue"></li>
+    </ul>
     <script src="./main.js"></script>
 </body>
 
