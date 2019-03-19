@@ -3,6 +3,7 @@ var context = canvas.getContext('2d')
 // var eraser = document.getElementById('eraser')
 // var brush = document.getElementById('brush')
 // var wipe = document.getElementById('wipe')
+var lineWidth = 2
 
 var isTouchDevice = 'ontouchstart' in document.documentElement
 // 1.自动初始化画布
@@ -14,12 +15,13 @@ listenToUser(canvas)
 // 3.设置功能按钮
 // var brushEnabled = true
 var eraserEnabled = false
-
+// 工具选择
 brush.onclick = function () {
     eraserEnabled = false
     brush.classList.add('active')
     eraser.classList.remove('active')
 }
+
 
 eraser.onclick = function () {
     eraserEnabled = true
@@ -27,40 +29,69 @@ eraser.onclick = function () {
     brush.classList.remove('active')
 }
 
+
 wipe.onclick = function () {
     context.clearRect(0, 0, canvas.width, canvas.height)
 }
 
+// 颜色选择
+black.onclick = function () {
+    eraserEnabled = false
+    black.classList.add('active')
+    red.classList.remove('active')
+    green.classList.remove('active')
+    blue.classList.remove('active')
+    context.strokeStyle = 'black'
+}
+
 red.onclick = function () {
+    eraserEnabled = false
+    black.classList.remove('active')
     red.classList.add('active')
     green.classList.remove('active')
     blue.classList.remove('active')
     context.strokeStyle = 'red'
 }
 green.onclick = function () {
+    eraserEnabled = false
+    black.classList.remove('active')
     red.classList.remove('active')
     green.classList.add('active')
     blue.classList.remove('active')
     context.strokeStyle = 'green'
 }
 blue.onclick = function () {
+    eraserEnabled = false
+    black.classList.remove('active')
     red.classList.remove('active')
     green.classList.remove('active')
     blue.classList.add('active')
     context.strokeStyle = 'blue'
 }
 
-// function pickColor(colorId) {
-//     colorId.onclick = function () {
-//         console.log(colorId)
-//         colorId.classList.add('active')
-//         var parent = document.getElementsByClassName('colorPicker')
-//         parent.children.forEach(element => {
-//             element.classList.remove('active')
-//         });
-//     }
-// }
+// 粗细选择
+thin.onclick = function () {
+    lineWidth = 2
+}
 
+mid.onclick = function () {
+    lineWidth = 5
+}
+
+thick.onclick = function () {
+    lineWidth = 8
+}
+
+// 下载保存
+download.onclick = function () {
+    var url = canvas.toDataURL('image/png', 1.0)
+    var link = document.createElement('a')
+    document.body.appendChild(link)
+    link.href = url
+    link.download = "my_works"
+    link.click()
+
+}
 
 /*****************工具函数*****************************************/
 
@@ -75,7 +106,7 @@ function drawLine(x1, y1, x2, y2) {
     context.beginPath()
     context.moveTo(x1, y1)
     context.lineTo(x2, y2)
-    context.lineWidth = 2
+    context.lineWidth = lineWidth
     context.stroke()
     context.closePath()
 }
@@ -123,7 +154,7 @@ function listenToUser(canvas) {
                     "x": x,
                     "y": y
                 }
-                drawCircle(x, y, 1)
+                // drawCircle(x, y, 1)
             }
         }
         canvas.ontouchmove = function (aaa) {
@@ -138,7 +169,7 @@ function listenToUser(canvas) {
                     "x": x,
                     "y": y
                 }
-                drawCircle(x, y, 1)
+                // drawCircle(x, y, 1)
                 drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
                 lastPoint = newPoint
             }
@@ -160,7 +191,7 @@ function listenToUser(canvas) {
                     "x": x,
                     "y": y
                 }
-                drawCircle(x, y, 1)
+                // drawCircle(x, y, 1)
             }
 
         }
@@ -179,7 +210,7 @@ function listenToUser(canvas) {
                     "x": x,
                     "y": y
                 }
-                drawCircle(x, y, 1)
+                // drawCircle(x, y, 1)
                 drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
                 lastPoint = newPoint
             }
