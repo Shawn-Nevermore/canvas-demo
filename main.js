@@ -109,6 +109,10 @@ function drawLine(x1, y1, x2, y2) {
     context.lineWidth = lineWidth
     context.stroke()
     context.closePath()
+
+    // 消除毛边
+    context.lineCap = "round"
+    context.lineJoin = "round"
 }
 
 function autoSetCanvasSize(canvas) {
